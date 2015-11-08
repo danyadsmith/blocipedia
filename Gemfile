@@ -23,6 +23,10 @@ end
 # Use Simple Form for forms
 gem 'simple_form'
 
+# Use the Bootstrap Framework for styling
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+
 # Use Devise for User Authentication
 gem 'devise'
 
