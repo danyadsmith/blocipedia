@@ -1,0 +1,40 @@
+<div class="col-lg-2">
+  
+</div>
+<div class="col-lg-8">
+<div class="page-header">
+<h2>
+  <% if @wiki.private %>
+  <small><span class="glyphicon glyphicon-lock"></span></small>
+  <% end %>
+  <%= @wiki.title %>
+  <div class="btn btn-group btn-group-sm pull-right">
+    <button class="btn btn-default">
+      <%= link_to 'Edit', edit_wiki_path(@wiki) %>
+    </button>
+    <button class="btn btn-default">
+      <%= link_to "Delete", @wiki, method: :delete  %>
+    </button>
+    <button class="btn btn-sm btn-default">
+  <%= link_to 'New Article', new_wiki_article_path(@wiki) %>
+  </button>     
+  </div>
+</h2>
+<p><%= @wiki.description %>
+</p>
+ 
+</div>
+<ul class="list-group">
+  <% @wiki.articles.each do |article| %>
+  <li class="list-group-item">
+  <h4>
+    <%= render partial: 'articles/article', locals: { wiki: @wiki, article: article } %>
+  </h4>
+  </li>
+  <% end %>
+</ul>
+
+</div>
+<div class="col-lg-2">
+  
+</div>

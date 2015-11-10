@@ -33,6 +33,7 @@
    <% end %>
 </ul>
 
+<%= yield %>
 
   <div class="flash">
   <% if flash[:notice] %>
@@ -60,6 +61,6 @@
   </div>
 <div class="container-fluid">
 <%= yield %>
-
+  </div>
 </body>
 </html>
