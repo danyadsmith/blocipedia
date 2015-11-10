@@ -33,6 +33,9 @@ gem 'devise'
 # Use Pundit for user authorization
 gem "pundit"
 
+# Use Faker to seed test data
+gem 'faker', '~> 1.5'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
