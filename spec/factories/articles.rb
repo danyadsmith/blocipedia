@@ -1,10 +1,8 @@
-include RandomData
-
 FactoryGirl.define do
 
   factory :article do
-    title RandomData.random_sentence
-    body RandomData.random_paragraph
+    title Faker::Lorem.sentence(1)
+    body Faker::Lorem.paragraph(6, true)
     wiki 
   end
 
