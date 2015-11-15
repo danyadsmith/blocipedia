@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :wikis do
     resources :articles 
   end
+
+  resources :charges, only: [:new, :create]
   
   get 'pages/index'
 

@@ -4,25 +4,29 @@
 
 7.times do
   user = User.create!(
+    name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: Faker::Internet.password(10),
+    password: "blocipedia",
     role: 0
   )
 end
 
 standard_user = User.create!(
+  name: "Standard User",
   email: "standard@blocipedia.com",
   password: "blocipedia",
   role: 0
 )
 
 premium_user = User.create!(
+  name: "Premium User",
   email: "premium@blocipedia.com",
   password: "blocipedia",
   role: 1
 )
 
 admin_user = User.create!(
+  name: "Admin User",
   email: "admin@blocipedia.com",
   password: "blocipedia",
   role: 2
