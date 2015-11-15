@@ -1,5 +1,4 @@
 require 'rails_helper'
-include RandomData
 
 RSpec.describe Article, type: :model do
   let(:wiki) { create(:wiki) }

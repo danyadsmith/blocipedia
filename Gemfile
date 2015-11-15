@@ -30,6 +30,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'faker', '~> 1.5'
 gem 'font-awesome-rails'
 gem 'pundit'
 gem 'simple_form'

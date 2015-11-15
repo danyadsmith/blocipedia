@@ -1,6 +1,5 @@
-include RandomData
 FactoryGirl.define do
-  pw = RandomData.random_sentence
+  pw = Faker::Internet.password(10)
 
   factory :user do
     sequence(:email){|n| "user#{n}@factory.com" }
