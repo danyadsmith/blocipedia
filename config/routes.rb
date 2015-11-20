@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :articles 
   end
 
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:new, :create, :edit, :update, :destroy]
   
   get 'pages/index'
 
