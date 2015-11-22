@@ -64,10 +64,10 @@ public_wikis = Wiki.where(private: false)
 end
 
 # ##############################################################
-# Create Private Wikis (5)
+# Create Private Wikis (10)
 # ##############################################################
 
-5.times do
+10.times do
   wiki = Wiki.create!(
     title: Faker::Lorem.sentence,
     description: Faker::Lorem.sentence(3),
