@@ -1,21 +1,25 @@
 class ArticlesController < ApplicationController
 
   before_action :load_wiki
-  before_action :load_article
+  before_action :load_article, except: [:new, :create]
 
   def index
     @articles = Article.all
+    authorize @wiki
   end
 
   def show
+    authorize @wiki
   end
 
   def new
     @article = Article.new
+    authorize @wiki
   end
 
   def create
     @article = @wiki.articles.build(article_params)
+    authorize @wiki
     if @article.save
       redirect_to [@wiki, @article], notice: "Article was created successfully."
     else
@@ -25,10 +29,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-
+    authorize @wiki
   end
 
   def update
+    authorize @wiki
     @article.assign_attributes(article_params)
 
     if @article.save
@@ -40,6 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    authorize @wiki
     if @article.destroy
       redirect_to [@wiki], notice: "Article was deleted."
     else
