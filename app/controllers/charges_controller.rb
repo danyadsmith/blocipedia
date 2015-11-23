@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
 
   def new
+  authorize :charges
   @stripe_btn_data = {
    key: "#{ Rails.configuration.stripe[:publishable_key] }",
    description: "WriteSpace Premium Membership - #{current_user.name}",
@@ -9,6 +10,7 @@ class ChargesController < ApplicationController
   end  
 
   def create
+    authorize :charges
    # Creates a Stripe Customer object, for associating
    # with the charge
    begin
@@ -21,7 +23,7 @@ class ChargesController < ApplicationController
     current_user.stripe_customer_id = customer.id
     current_user.premium!
 
-    flash[:notice] = "Your WriteSpace premium account has been activated, #{current_user.email}! Your trial period ends in 15 days."
+    flash[:notice] = "Your WriteSpace premium account has been activated, #{current_user.email}! Your trial period ends in 5 days."
       # Stripe will send back CardErrors, with friendly messages
   # when something goes wrong.
   # This `rescue block` catches and displays those errors.
@@ -32,14 +34,11 @@ class ChargesController < ApplicationController
      flash[:error] = e.message
      redirect_to new_charge_path
    end
-   
-
    redirect_to edit_user_registration_path(current_user) 
-
-
   end
 
   def edit
+    authorize :charges
     @id = current_user.id
     customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
     @subscriptions = customer.subscriptions.all
@@ -55,6 +54,7 @@ class ChargesController < ApplicationController
   end
 
   def destroy
+    authorize :charges
     begin
       @id = current_user.id
       @stripe_id = current_user.stripe_customer_id
