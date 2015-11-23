@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :wikis do
     resources :articles 
   end
+
+  resources :charges, only: [:new, :create, :edit, :update, :destroy]
   
   get 'pages/index'
 
