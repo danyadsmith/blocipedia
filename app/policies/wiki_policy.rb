@@ -24,14 +24,9 @@ class WikiPolicy < ApplicationPolicy
 
   def destroy?
     return true if user.present? && user.admin?
-    user.present? && user.premium? && Wiki.owned_by(user)
-    return false if user.standard?
+    user.present? && user.premium? && record.private && user.id == record.user_id
   end
 
-  private
 
-  def wiki
-    record
-  end
 
 end
