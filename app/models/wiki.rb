@@ -19,5 +19,6 @@ class Wiki < ActiveRecord::Base
   scope :publicly_viewable, -> { Wiki.where(private: false).order('title ASC') }
   scope :privately_viewable, -> (user) { Wiki.where(["private = ? or user_id = ?", false, user.id]).order('private DESC, title ASC')}
   scope :owned_by, -> (user) { Wiki.where(user_id: user.id).order('title ASC')}
+  scope :all_private, -> {Wiki.where(private: true).order('title ASC')}
 
 end

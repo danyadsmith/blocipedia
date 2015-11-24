@@ -12,7 +12,7 @@
     <button class="btn btn-default">
       <%= link_to 'Edit', edit_wiki_path(@wiki) %>
     </button>
-    <% if policy(Wiki).destroy? %>
+    <% if policy(@wiki).destroy? %>
     <button class="btn btn-default">
       <%= link_to "Delete", @wiki, method: :delete  %>
     </button>

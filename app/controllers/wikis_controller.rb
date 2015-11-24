@@ -45,7 +45,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    authorize @wiki, @article
+    authorize @wiki#, @article
 
     if @wiki.destroy
       redirect_to @wiki, notice: "Wiki was deleted successfully."

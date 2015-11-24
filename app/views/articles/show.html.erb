@@ -24,7 +24,7 @@
     <button class="btn btn-default">
       <%= link_to 'Edit', edit_wiki_article_path %>
     </button>
-    <% if policy(Wiki).destroy? %>
+    <% if policy(@wiki).destroy? %>
     <button class="btn btn-default">
       <%= link_to "Delete", [@wiki, @article], method: :delete  %>
     </button>
