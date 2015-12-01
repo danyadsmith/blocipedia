@@ -21,6 +21,7 @@ end
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
+gem 'epiceditor-rails'
 gem 'faker', '~> 1.5'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.0'
