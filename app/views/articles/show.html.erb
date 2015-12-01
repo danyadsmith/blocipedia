@@ -32,9 +32,9 @@
   </div>
     </h2>
   </div>
-  <div class="media">
+  <div id="article_body">
   <div>
-    <%= @article.body %>
+    <%= markdown(@article.body).html_safe %>
   </div>
   </div>
 </div>
