@@ -60,11 +60,12 @@ class ChargesController < ApplicationController
       @stripe_id = current_user.stripe_customer_id
       current_user.standard!
       customer = Stripe::Customer.retrieve(@stripe_id)
-      customer.subscriptions.retrieve("blocipedia").delete
+      customer.subscriptions.first.delete
     rescue Exception => e
       flash[:error] = e.message
       redirect_to new_charge_path
     end
+    redirect_to root_path
   end
 
 
