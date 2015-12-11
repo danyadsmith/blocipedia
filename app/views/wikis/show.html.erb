@@ -1,9 +1,5 @@
-<div class="col-lg-2">
-  
-</div>
-<div class="col-lg-8">
 <div class="page-header">
-<h2>
+<h1>
   <% if @wiki.private %>
   <small><span class="glyphicon glyphicon-lock"></span></small>
   <% end %>
@@ -21,14 +17,18 @@
   <%= link_to 'New Article', new_wiki_article_path(@wiki) %>
   </button>     
   </div>
-</h2>
-<p><%= @wiki.description %>
+</h1>
+<p <% if @wiki.private %> style="text-indent:2.5em" <% end %>><%= @wiki.description %>
 </p>
  
 </div>
+
+
+<div class="col-lg-7">
+
 <ul class="list-group">
   <% @wiki.articles.each do |article| %>
-  <li class="list-group-item">
+  <li class="list-group-item" >
   <h4>
     <%= render partial: 'articles/article', locals: { wiki: @wiki, article: article } %>
   </h4>
@@ -37,6 +37,18 @@
 </ul>
 
 </div>
-<div class="col-lg-2">
-  
+
+<div class="col-lg-3">
+  <div class="media" style="margin-bottom:10px;">
+    <%= image_link_to(avatar_url(@wiki.user, '40'), @wiki.user.email, options={class: 'pull-left'}) %>
+    <p><strong><%= @wiki.user.name %></strong>&nbsp;<span class="label label-default">Owner</span><br />
+    <%= @wiki.user.email %></p>
+  </div>
+  <% @wiki.collaborators.each do |c| %>
+    <div class="media">
+    <%= image_link_to(avatar_url(c.user, '40'), c.user.email, options={class: 'pull-left'}) %>
+    <p><small><strong><%= c.user.name %></strong>&nbsp;<span class="label label-default">Collaborator</span><br />
+    <%= c.user.email %></small></p>
+    </div>
+  <% end %>
 </div>

@@ -2,8 +2,7 @@ class WikisController < ApplicationController
   before_action :load_wiki, only: [:show, :edit, :update, :destroy]
 
   def index
-    @wikis = Wiki.visible_to(current_user)
-    authorize @wikis, @articles
+    @wikis = Wiki.paginate(:page => params[:page], :per_page => 10).order('private DESC, title ASC')    
   end
 
   def show
@@ -29,6 +28,9 @@ class WikisController < ApplicationController
 
   def edit
     authorize @wiki, @article
+    @collaborators = @wiki.collaborators
+    @collabortor = Collaborator.new
+    @users = User.find_by_sql("SELECT USERS.ID, USERS.Name FROM USERS WHERE USERS.ID NOT IN (SELECT USER_ID FROM COLLABORATORS WHERE WIKI_ID = #{params[:id]})")  
   end
 
   def update

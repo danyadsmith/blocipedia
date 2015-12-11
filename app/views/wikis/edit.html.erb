@@ -1,12 +1,46 @@
+<div class="page-header">
+    <h1>Edit Wiki</h1>
+</div>
+
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-lg-1">
  
   </div>
-  <div class="col-md-4">
-  <h2>Edit Wiki</h2>
+  <div class="col-lg-5">
+  <h3>Manage Properties</h3>
     <%= render partial: 'form', locals: { wiki: @wiki } %>
   </div>
-  <div class="col-md-4">
- 
+  <div class="col-lg-5">
+    <h3>Manage Collaborators</h3>
+    <table id="manage_collaborators" class="table table-hover">
+      <thead>
+        <th>&nbsp;</th>
+        <th>Full Name</th>
+        <th>E-mail Address</th>
+        <th>&nbsp;</th>
+      </thead>
+      <tbody>
+        <% @wiki.collaborators.each do |c| %>
+        <tr>
+          <td class="media">
+          <%= image_link_to(avatar_url(c.user, '40'), c.user.email) %>
+          </td>
+          <td>
+            <strong><%= c.user.name %></strong>
+          </td>
+          <td>
+          <%= c.user.email %>
+          </td>
+          <td>
+          <button class="btn btn-danger">
+          <%= link_to "Delete", wiki_collaborator_path(collaborator_id: c.id, wiki_id: @wiki.id), method: :delete  %>
+          </button>
+          <td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr />
+    <%= render partial: 'collaborator/form', locals: {wiki_id: @wiki.id} %>
   </div>
 </div>

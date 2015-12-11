@@ -8,5 +8,10 @@ module ApplicationHelper
   def image_link_to(image_path, target_link,options={})
     link_to(image_tag(image_path, :border => "0"), target_link, options)
   end  
-    
+
+   def avatar_url(user, size)
+     gravatar_id = Digest::MD5::hexdigest(user.email).downcase
+     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+   end
+
 end

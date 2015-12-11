@@ -15,3 +15,18 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+document.jQuery(document).ready(function($) {
+
+selected = $("#new_collaborator:selected").val()
+console.log(selected)
+
+$( "#new_collaborator" ).change(function() {
+  var add_collaborator = $("#new_collaborator:selected").val();
+  var wiki = "<%= j(params['wiki_id']) %>";
+  console.log("Collaborator to add: " + add_collaborator)
+  console.log("Wiki ID:" + wiki)
+});
+  
+});
+

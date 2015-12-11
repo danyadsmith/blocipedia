@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'collaborators/index'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :wikis do
     resources :articles 
+    resources :collaborator, only: [:index, :new, :create, :destroy]
   end
 
   resources :charges, only: [:new, :create, :edit, :update, :destroy]
