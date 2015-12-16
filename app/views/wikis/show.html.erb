@@ -5,9 +5,11 @@
   <% end %>
   <%= @wiki.title %>
   <div class="btn btn-group btn-group-sm pull-right">
+    <% if policy(@wiki).update? %>
     <button class="btn btn-default">
       <%= link_to 'Edit', edit_wiki_path(@wiki) %>
     </button>
+    <% end %>
     <% if policy(@wiki).destroy? %>
     <button class="btn btn-default">
       <%= link_to "Delete", @wiki, method: :delete  %>
@@ -40,13 +42,13 @@
 
 <div class="col-lg-3">
   <div class="media" style="margin-bottom:10px;">
-    <%= image_link_to(avatar_url(@wiki.user, '40'), @wiki.user.email, options={class: 'pull-left'}) %>
+    <%= image_link_to(avatar_url(@wiki.user, '40'), @wiki.user.email, options={class: 'pull-left'}) unless @wiki.user.nil? %>
     <p><strong><%= @wiki.user.name %></strong>&nbsp;<span class="label label-default">Owner</span><br />
     <%= @wiki.user.email %></p>
   </div>
   <% @wiki.collaborators.each do |c| %>
     <div class="media">
-    <%= image_link_to(avatar_url(c.user, '40'), c.user.email, options={class: 'pull-left'}) %>
+    <%= image_link_to(avatar_url(c.user, '40'), c.user.email, options={class: 'pull-left'}) unless c.user.nil? %>
     <p><small><strong><%= c.user.name %></strong>&nbsp;<span class="label label-default">Collaborator</span><br />
     <%= c.user.email %></small></p>
     </div>

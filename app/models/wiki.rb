@@ -1,7 +1,8 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
   has_many :articles, dependent: :destroy
-  has_many :users, through: :collaborators
+  has_many :users, through: :collaborators, dependent: :destroy
+  has_many :collaborators
 
   validates :title, length: { minimum: 3 }, presence: true
   validates :description, length: { maximum: 256 }, presence: true

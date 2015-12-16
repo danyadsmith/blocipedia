@@ -1,8 +1,9 @@
 class WikisController < ApplicationController
+
   before_action :load_wiki, only: [:show, :edit, :update, :destroy]
 
   def index
-    @wikis = Wiki.paginate(:page => params[:page], :per_page => 10).order('private DESC, title ASC')    
+    @wikis = policy_scope(Wiki).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -47,7 +48,7 @@ class WikisController < ApplicationController
   end
 
   def destroy
-    authorize @wiki#, @article
+    authorize @wiki
 
     if @wiki.destroy
       redirect_to @wiki, notice: "Wiki was deleted successfully."
