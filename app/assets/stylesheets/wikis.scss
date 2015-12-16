@@ -1,3 +1,20 @@
-// Place all the styles related to the Wikis controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div.pagination {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  text-transform: uppercase;
+  letter-spacing:0.1em;
+  font-size:.85em;
+  margin: 0 0 10px 0 !important;
+}
+
+div.pagination .current {
+  background-color: #337AB7;
+  color: #fff;
+  min-width:25px;
+  display:inline-block;
+  text-align: center;
+  border-radius:90px;
+}
+
+div.pagination * {
+  padding: 0 5px;
+}

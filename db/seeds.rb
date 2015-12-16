@@ -91,3 +91,42 @@ private_wikis = Wiki.where(private: true)
   )
   article.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
 end
+
+# ##############################################################
+# Create Private Wiki Collaborators (40)
+# ##############################################################
+
+10.times do |n|
+  collaborator = Collaborator.create!(
+    user: users[1],
+    wiki: private_wikis[n]
+  )
+end
+
+10.times do |n|
+  collaborator = Collaborator.create!(
+    user: users[2],
+    wiki: private_wikis[n]
+  )
+end
+
+10.times do |n|
+  collaborator = Collaborator.create!(
+    user: users[3],
+    wiki: private_wikis[n]
+  )
+end
+
+10.times do |n|
+  collaborator = Collaborator.create!(
+    user: users[4],
+    wiki: private_wikis[n]
+  )
+end
+
+10.times do |n|
+  collaborator = Collaborator.create!(
+    user: users[5],
+    wiki: private_wikis[n]
+  )
+end
