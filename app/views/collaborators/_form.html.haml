@@ -1,10 +1,8 @@
-  %p 
-    %small Collaborators are added by e-mail address. Enter a valid e-mail address below.</small>
-    .form-inline
-      = form_tag wiki_collaborators_path(wiki) do 
-        = label_tag :email, "Add Collaborator" 
-        = email_field_tag :email, "", class: 'form-control', style: 'width:250px;' 
-        = submit_tag "Add", class: 'btn btn-success' 
-      - end 
-    
-
+%p 
+  %small 
+    Collaborators are added by e-mail address. Enter a valid e-mail address below.
+  .form-inline
+    = form_tag wiki_collaborators_path(wiki) do 
+      = label_tag :email, "Add Collaborator" 
+      = email_field_tag :email, "", class: 'form-control', style: 'width:250px;' 
+      = submit_tag "Add", class: 'btn btn-success'
