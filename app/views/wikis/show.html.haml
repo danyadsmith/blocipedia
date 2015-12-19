@@ -1,0 +1,54 @@
+.page-header
+  .btn.btn-group.btn-group-sm.pull-right
+    - if policy(@wiki).update? 
+      %button.btn.btn-default
+        = link_to 'Edit', edit_wiki_path(@wiki) 
+    - if policy(@wiki).destroy? 
+      %button.btn.btn-default
+        = link_to "Delete", @wiki, method: :delete  
+    %button.btn.btn-sm.btn-default
+      = link_to 'New Article', new_wiki_article_path(@wiki) 
+  %h1
+    - if @wiki.private 
+      %small
+        %span.glyphicon.glyphicon-lock
+    = @wiki.title 
+  - if @wiki.private  
+    %p.private_description
+      = @wiki.description 
+  - else
+    %p
+      = @wiki.description
+
+.col-lg-7
+
+  %ul.list-group
+  - @wiki.articles.each do |article| 
+    %li.list-group-item
+      %h4
+        = render partial: 'articles/article', locals: { wiki: @wiki, article: article } 
+
+.col-lg-3
+  .media 
+    = image_link_to(avatar_url(@wiki.user, '40'), @wiki.user.email, options={class: 'pull-left'}) 
+    %p 
+      %strong.Owner
+        = @wiki.user.name
+      %span.label.label-default
+        Owner  
+
+      %span.label.label-defaultOwner
+      %br 
+      = @wiki.user.email 
+  
+  - @wiki.collaborators.each do |c| 
+    .media
+      = image_link_to(avatar_url(c.user, '40'), c.user.email, options={class: 'pull-left'}) 
+      %p 
+        %small
+          %strong
+            = c.user.name 
+          %span.label.label-default
+            Collaborator
+          %br 
+          = c.user.email 

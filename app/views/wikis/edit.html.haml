@@ -1,0 +1,33 @@
+.page-header
+  %h1 Edit Wiki
+
+.row
+  .col-lg-1
+  .col-lg-5
+    %h3 Manage Properties
+    = render partial: 'form', locals: { wiki: @wiki } 
+  .col-lg-5
+    %h3 Manage Collaborators
+    %table#manage_collaborators.table.table-hover
+      %thead
+        %th &nbsp;
+        %th Full Name
+        %th E-mail Address
+        %th &nbsp;
+      %tbody
+        - @wiki.collaborators.each do |c| 
+          %tr
+            %td.media
+              = image_link_to(avatar_url(c.user, '40'), c.user.email) 
+            %td
+              %strong
+                = c.user.name
+            %td
+              = c.user.email 
+            %td
+              %button.btn.btn-danger
+                = link_to "Delete", wiki_collaborator_path(collaborator_id: c.id, wiki_id: @wiki.id), method: :delete
+    %hr
+    = render partial: 'collaborators/form', locals: {wiki: @wiki} 
+  
+

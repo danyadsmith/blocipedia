@@ -1,9 +1,0 @@
-<li class="list-group-item">
-  <h4 class="media-heading">
-  <% if wiki.private %>
-  <small><span class="glyphicon glyphicon-lock"></span></small>
-  <% end %>
-  <%= link_to wiki.title, wiki_path(id: wiki.id)%>
-  </h4>
-  <small><%= wiki.description %></small>
-</li>

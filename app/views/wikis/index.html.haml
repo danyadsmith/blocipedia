@@ -1,0 +1,14 @@
+.row
+  &nbsp;
+.col-lg-2.text-center
+  %button.btn.btn-lg.btn-default
+    = link_to 'New Wiki', new_wiki_path(@wiki) 
+  %br 
+  %br 
+.col-lg-7
+  %ul.list-group
+    - @wikis.each do |wiki| 
+      = render partial: 'wiki', locals: { wiki: wiki } 
+  .text-center
+    = will_paginate @wikis 
+.col-lg-3

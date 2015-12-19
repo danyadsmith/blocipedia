@@ -36,7 +36,7 @@ class WikiPolicy < ApplicationPolicy
 
     def resolve
       if user.admin?
-        scope.all
+        scope.all.order('private DESC, title ASC')
       else
         scope.find_by_sql("SELECT * FROM WIKIS WHERE USER_ID = #{user.id} OR PRIVATE = FALSE OR ID IN (SELECT WIKI_ID FROM COLLABORATORS WHERE USER_ID = #{user.id}) ORDER BY PRIVATE DESC, TITLE ASC")
       end

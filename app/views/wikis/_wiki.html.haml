@@ -1,0 +1,9 @@
+%li.list-group-item
+  %h4.media-heading
+    - if wiki.private 
+      %small
+        %span.glyphicon.glyphicon-lock
+    = link_to wiki.title, wiki_path(id: wiki.id)
+    %br
+    %small
+      = wiki.description
