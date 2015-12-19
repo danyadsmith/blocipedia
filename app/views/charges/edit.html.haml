@@ -1,0 +1,9 @@
+%h3 = @plan_name 
+- if @subscription_status == "trialing" 
+  %p Your trial subscription will run until = Time.at(@trial_ends).strftime("%A, %B %d, %Y at %I:%M %p") .
+- else   
+  %p Your paid subscription will renew on = Time.at(@current_period_ends).strftime("%A, %B %d, %Y") . 
+- end 
+
+%button.btn.btn-default
+  = link_to 'Cancel Subscription', "/charges/" + @id.to_s, method: :delete 

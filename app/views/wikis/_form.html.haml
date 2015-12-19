@@ -1,0 +1,6 @@
+= simple_form_for wiki do |f| 
+  = f.input :title 
+  = f.input :description 
+  = f.input :private if current_user.premium? || current_user.admin? 
+  = f.button :submit, class: "btn-success" 
+- end 
