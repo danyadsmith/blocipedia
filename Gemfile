@@ -14,6 +14,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors'  
   gem 'awesome_print'
   gem 'pry-rails'
 end
