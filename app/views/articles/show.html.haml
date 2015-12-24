@@ -2,7 +2,7 @@
   %h1
     - if @wiki.private 
       %small.glyphicon.glyphicon-lock
-    = link_to @wiki.title, @wiki  
+    = link_to @wiki.title, wiki_path(@wiki.slug)
   
 .col-lg-7
   .btn.btn-group.btn-group-sm.pull-right

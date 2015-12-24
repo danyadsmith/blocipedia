@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
   def update
     authorize @wiki
     @article.assign_attributes(article_params)
+    @article.slug = params[:title]
 
     if @article.save
       redirect_to [@wiki, @article], notice: "Article was updated successfully."
@@ -57,11 +58,11 @@ class ArticlesController < ApplicationController
   private
 
   def load_wiki
-    @wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.friendly.find(params[:wiki_id])
   end
 
   def load_article
-    @article = Article.find(params[:id])
+    @article = Article.friendly.find(params[:id])
   end
 
   def article_params

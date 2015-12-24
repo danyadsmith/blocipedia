@@ -3,7 +3,7 @@
     - if wiki.private 
       %small
         %span.glyphicon.glyphicon-lock
-    = link_to wiki.title, wiki_path(id: wiki.id)
+    = link_to wiki.title, wiki_path(id: wiki.slug)
     %br
     %small
       = wiki.description

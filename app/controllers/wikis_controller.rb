@@ -29,13 +29,15 @@ class WikisController < ApplicationController
 
   def edit
     authorize @wiki, @article
+    @wiki = Wiki.find_by_slug(params[:id])
     @collaborators = @wiki.collaborators
     @collabortor = Collaborator.new
-    @users = User.find_by_sql("SELECT USERS.ID, USERS.Name FROM USERS WHERE USERS.ID NOT IN (SELECT USER_ID FROM COLLABORATORS WHERE WIKI_ID = #{params[:id]})")  
+    @users = User.find_by_sql("SELECT USERS.ID, USERS.Name FROM USERS WHERE USERS.ID NOT IN (SELECT USER_ID FROM COLLABORATORS WHERE WIKI_ID = #{@wiki.id})")  
   end
 
   def update
     @wiki.assign_attributes(wiki_params)
+    @wiki.slug = params[:title]
     authorize @wiki, @article
 
     if @wiki.save
@@ -61,7 +63,7 @@ class WikisController < ApplicationController
   private
 
   def load_wiki
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
   end
 
   def wiki_params
